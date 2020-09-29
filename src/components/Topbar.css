@@ -1,5 +1,6 @@
 #toolbar {
     width: 100%;
+    height: 9vh;
     background-color: white;
     color: #000;
     display: flex;
@@ -7,26 +8,6 @@
     align-items: center;
     box-shadow: 0 10px 25px rgba(0,0,0,.1);
     z-index: 100;
-}
-
-#generateArray {
-    font-size: 16px;
-    font-family: monospace;
-    display: inline-block;
-    margin-left: 25px;
-    margin-right: 15px;
-}
-
-#generateArray:hover {
-    color: rgb(212, 212, 212) !important;
-}
-
-#generateArrayX {
-    font-size: 16px;
-    font-family: monospace;
-    display: inline-block;
-    margin-left: 25px;
-    margin-right: 15px;
 }
 
 #arraySize {
@@ -111,7 +92,7 @@
     color: rgb(212, 212, 212);
 }
 
-input[type=range] {
+/* input[type=range] {
     -webkit-appearance: none;
     border: 1px solid white;
     width: 100px;
@@ -194,4 +175,4 @@ input[type=range]:focus::-ms-fill-lower {
 
 input[type=range]:focus::-ms-fill-upper {
     background: #ccc;
-}
+} */

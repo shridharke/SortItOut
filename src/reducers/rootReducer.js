@@ -5,7 +5,8 @@ import { currentBubbleTwo } from "./bubbleSort/reducer"
 import { currentSwappers } from "./swappers/reducer"
 import { currentSorted } from "./sorted/reducer"
 import { isRunning } from "./running/reducer"
+import { speed } from "./speed/reducer"
 
 export default combineReducers({
-    array, algorithm, currentBubbleTwo, currentSorted, currentSwappers, isRunning
+    array, algorithm, currentBubbleTwo, currentSorted, currentSwappers, isRunning, speed
 })

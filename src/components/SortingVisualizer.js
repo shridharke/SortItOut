@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 export const SortingVisualizer = ({ array, algorithm, currentBubbleTwo, currentSorted, currentSwappers, isRunning }) => {
 
-    const numWidth = Math.floor(1000 / (array.length));
+    const numWidth = Math.floor(window.innerWidth / (array.length * 1.5));
     const width = `${numWidth}px`;
     const numMargin = array.length < 5 ?
         10 : array.length < 8 ?
@@ -25,16 +25,16 @@ export const SortingVisualizer = ({ array, algorithm, currentBubbleTwo, currentS
     const fontSize = `${numFont}px`
 
     return (
-        <div id="bodyContainer" style={{ width: "100%", height: "100%", backgroundColor: "transparent", textAlign: "center", display: "flex", justifyContent: "center", alignItems: "flex-end" }}>
+        <div id="bodyContainer" style={{ width: "100%", height: "80vh", backgroundColor: "transparent", textAlign: "center", display: "flex", justifyContent: "center", alignItems: "flex-end" }}>
             { array.length ? array.map((number, index) => {
                 const backgroundColor = currentSwappers.includes(index) ?
-                    "#ff073a" : currentBubbleTwo.includes(index) ?
-                        "#007bff" : currentSorted.includes(index) ?
-                            "#28a745" : "#aaa";
+                    "rgba(255, 7, 58, 0.6)" : currentBubbleTwo.includes(index) ?
+                        "rgba(0, 123, 255, 0.6)" : currentSorted.includes(index) ?
+                            "rgba(40, 167, 69, 0.6)" : "rgba(108, 117, 125, 0.6)";
                 return <div
                     className="arrayElement"
                     key={index}
-                    style={{ display: "flex", borderRadius: "5px", alignItems: "flex-end", justifyContent: "center", height: `${number * 3}px`, width: width, marginLeft: margin, backgroundColor: backgroundColor, color: color, fontSize: fontSize }}>
+                    style={{ display: "flex", paddingBottom: "10px", transition: "0.1s", borderRadius: "5px 5px 0px 0px", alignItems: "flex-end", justifyContent: "center", height: `${number / 2.3}%`, width: width, marginLeft: margin, backgroundColor: backgroundColor, color: color, fontSize: fontSize }}>
                     {number}
                 </div>
             }) : null
