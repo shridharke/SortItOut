@@ -6,12 +6,15 @@ import Topbar from './components/Topbar';
 import BottomBar from './components/BottomBar'
 
 function App() {
+
+	let isDark = true;
+
 	return (
-		<React.Fragment>
+		<div className={isDark ? "dark" : "light"}>
 			<Topbar />
 			<SortingVisualizer />
 			<BottomBar />
-		</React.Fragment>
+		</div>
 	);
 }
 

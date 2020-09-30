@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { setArray } from '../reducers/array/reducer'
 import { setCurrentSorted } from '../reducers/sorted/reducer'
@@ -7,12 +7,19 @@ import './BottomBar.css'
 
 export const BottomBar = ({ array, isRunning, generateArray, updateSpeed }) => {
 
+    useEffect(() => {
+        generateArray(18);
+        document.getElementById("sizeRange").value = 8;
+        updateSpeed(500);
+        document.getElementById("speedRange").value = 501;
+    }, [])
+
     function handleSizeChange(evt) {
         generateArray(Math.floor((parseInt(evt.target.value) + 3) * 1.65));
     }
 
     const handleSpeedChange = (e) => {
-        updateSpeed((e.target.value) * 10)
+        updateSpeed(1001 - parseInt(e.target.value))
     }
 
     return (
@@ -28,7 +35,7 @@ export const BottomBar = ({ array, isRunning, generateArray, updateSpeed }) => {
             </div>
             <div class="slidecontainer">
                 Change Speed
-                <input type="range" disabled={isRunning ? "disabled" : null} onChange={handleSpeedChange} min="1" max="100" class="slider" id="speedRange" />
+                <input type="range" onChange={handleSpeedChange} min="1" max="1000" class="slider" id="speedRange" />
             </div>
         </div>
     )

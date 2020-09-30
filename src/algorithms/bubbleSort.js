@@ -3,6 +3,28 @@ import { setCurrentBubbleTwo } from "../reducers/bubbleSort/reducer";
 import { setCurrentSwappers } from "../reducers/swappers/reducer";
 import { setCurrentSorted } from "../reducers/sorted/reducer";
 import { setRunning } from "../reducers/running/reducer";
+import { store } from '../store';
+
+function select(state) {
+    return state.speed
+}
+
+let currentValue
+function handleChange() {
+    let previousValue = currentValue
+    currentValue = select(store.getState())
+
+    if (previousValue !== currentValue) {
+        console.log(
+            'Some deep nested property changed from',
+            previousValue,
+            'to',
+            currentValue
+        )
+    }
+}
+
+const unsubscribe = store.subscribe(handleChange)
 
 const bubbleSort = (stateArray, dispatch, speed) => {
     let array = stateArray.slice(0), animations = [], sorted = false, round = 0;
@@ -43,7 +65,7 @@ const handleDispatch = (animations, dispatch, array, speed) => {
                 setCurrentSorted : setCurrentBubbleTwo;
     dispatch(dispatchFunction(animations.shift()));
     setTimeout(() => {
-        handleDispatch(animations, dispatch, array, speed);
+        handleDispatch(animations, dispatch, array, currentValue);
     }, speed);
 }
 

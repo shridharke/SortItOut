@@ -6,14 +6,11 @@ import { setCurrentSorted } from '../reducers/sorted/reducer'
 import { setRunning } from '../reducers/running/reducer'
 import bubbleSort from '../algorithms/bubbleSort'
 import mergeSort from '../algorithms/mergeSort'
+import quickSort from '../algorithms/quickSort'
+import heapSort from '../algorithms/heapSort'
 import './Topbar.css'
 
-export const Topbar = ({ array, algorithm, sort, isRunning, generateArray, updateAlgorithm }) => {
-
-    useEffect(() => {
-        generateArray(10);
-        // document.getElementById("changeSize").value = 50;
-    }, [])
+export const Topbar = ({ array, algorithm, sort, isRunning, generateArray, updateAlgorithm, speed }) => {
 
     function handleClick(algorithm) {
         updateAlgorithm(algorithm);
@@ -23,35 +20,12 @@ export const Topbar = ({ array, algorithm, sort, isRunning, generateArray, updat
         generateArray(Math.floor((parseInt(evt.target.value) + 3) * 1.65));
     }
 
-    const speed = 500;
-    // 570 - Math.pow(array.length, 2) > 0 ? 570 - Math.pow(array.length, 2) : 0;
-
     const color = isRunning ? "rgba(214, 29, 29, 0.8)" : "white";
 
     const cursor = isRunning ? "auto" : "pointer";
 
     return (
         <div id="toolbar">
-            {/* <div 
-                id={!isRunning ? "generateArray" : "generateArrayX"}
-                style={{ color: color, cursor: cursor }}
-                onClick={!isRunning ? () => generateArray(array.length) : null}>
-                Generate New Array
-            </div> */}
-            {/* <div
-                id="arraySize"
-                style={{ color: color }}>
-                Change Array Size & Sorting Speed
-            </div> */}
-            {/* <input
-                id="changeSize"
-                type="range"
-                min="0"
-                max="100"
-                style={{ background: color, cursor: cursor }}
-                disabled={isRunning ? "disabled" : null}
-                onChange={handleChange}
-            /> */}
             <div className="left-menu">
                 <div
                     className={algorithm === "mergeSort" ? "currentAlgorithmButton" : "algorithmButton"}
@@ -87,19 +61,12 @@ export const Topbar = ({ array, algorithm, sort, isRunning, generateArray, updat
                     Insertion Sort
                 </div>
             </div>
-            {/* { algorithm ? <div
-                id="sort"
-                style={{ color: color, cursor: cursor }}
-                onClick={!isRunning ? () => sort(algorithm, array, speed) : null}>
-                Sort!
-            </div> : null
-            } */}
         </div>
     )
 }
 
-const mapStateToProps = ({ array, algorithm, isRunning }) => ({
-    array, algorithm, isRunning
+const mapStateToProps = ({ array, algorithm, isRunning, speed }) => ({
+    array, algorithm, isRunning, speed
 })
 
 const mapDispatchToProps = () => dispatch => ({
@@ -119,7 +86,9 @@ const mapDispatchToProps = () => dispatch => ({
     sort: (algorithm, array, speed) => {
         let doSort = algorithm === "bubbleSort" ?
             bubbleSort : algorithm === "mergeSort" ?
-                mergeSort : null;
+                mergeSort : algorithm === "quickSort" ?
+                    quickSort : algorithm === "heapSort" ?
+                        heapSort : null;
         dispatch(setCurrentSorted([]));
         dispatch(setRunning(true));
         doSort(array, dispatch, speed);
