@@ -1,7 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 
 const initialStateOne = [];
-const initialStateTwo = [];
+const initialStateTwo = null;
 
 export const SET_CURRENT_SELECTION_TWO = "SET_CURRENT_SELECTION_TWO";
 export const setCurrentSelectionTwo = createAction(SET_CURRENT_SELECTION_TWO);

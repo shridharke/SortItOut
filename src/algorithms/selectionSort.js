@@ -29,7 +29,7 @@ const unsubscribe = store.subscribe(handleChange)
 const selectionSort = (stateArray, dispatch, speed) => {
     let array = stateArray.slice(0), animations = [];
     for (let i = 0; i < array.length - 1; i++) {
-        animations.push([i, true]);
+        animations.push(i);
         let minimum = array[i];
         let minIndex = i;
         for (let j = i + 1; j < array.length; j++) {
@@ -37,7 +37,7 @@ const selectionSort = (stateArray, dispatch, speed) => {
             if (array[j] < minimum) {
                 minimum = array[j];
                 minIndex = j;
-                animations.push([j, true]);
+                animations.push(j);
             }
         }
 
@@ -57,7 +57,7 @@ const selectionSort = (stateArray, dispatch, speed) => {
 const handleDispatch = (animations, dispatch, array, speed) => {
     if (!animations.length) {
         dispatch(setCurrentSelectionTwo(array.map((num, index) => index)));
-        dispatch(setPivot([]));
+        dispatch(setPivot(null));
         setTimeout(() => {
             dispatch(setCurrentSelectionTwo([]));
             dispatch(setCurrentSorted(array.map((num, index) => index)));
@@ -65,11 +65,12 @@ const handleDispatch = (animations, dispatch, array, speed) => {
         }, 900);
         return;
     }
-    let dispatchFunction = animations[0].length > 3 ?
-        setArray : animations[0].length === 3 || animations[0].length === 0 ?
-            setCurrentSwappers : animations[0].length === 2 && typeof animations[0][0] === "boolean" ?
-                setCurrentSorted : animations[0].length === 2 && typeof animations[0][1] === "boolean" ?
-                    setPivot : setCurrentSelectionTwo;
+    let dispatchFunction = !(animations[0] instanceof Array) ?
+        setPivot : animations[0].length > 3 ?
+            setArray : animations[0].length === 3 || animations[0].length === 0 ?
+                setCurrentSwappers : animations[0].length === 2 && typeof animations[0][0] === "boolean" ?
+                    setCurrentSorted : setCurrentSelectionTwo;
+
     dispatch(dispatchFunction(animations.shift()));
     setTimeout(() => {
         handleDispatch(animations, dispatch, array, currentValue);

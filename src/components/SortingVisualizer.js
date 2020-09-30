@@ -16,9 +16,10 @@ export const SortingVisualizer = ({ array, algorithm, currentBubbleTwo, currentM
             { array.length ? array.map((number, index) => {
                 const backgroundColor = currentSwappers.includes(index) ?
                     "rgba(255, 7, 58, 0.8)" : currentBubbleTwo.includes(index) || currentMergeX.includes(index) || currentQuickTwo.includes(index) || currentHeapThree.includes(index) || currentSelectionTwo.includes(index) ?
-                        "rgba(0, 123, 255, 0.8)" : pivot === index || spivot.includes(index) ?
-                            "rgba(237, 234, 59, 0.8)" : currentSorted.includes(index) ?
-                                "rgba(40, 167, 69, 0.8)" : "rgba(108, 117, 125, 0.8)";
+                        "rgba(0, 123, 255, 0.8)" : pivot === index ?
+                            "rgba(237, 234, 59, 0.8)" : spivot === index ?
+                                "rgba(237, 234, 59, 0.8)" : currentSorted.includes(index) ?
+                                    "rgba(40, 167, 69, 0.8)" : "rgba(108, 117, 125, 0.8)";
                 return <div
                     className="arrayElement"
                     key={index}
