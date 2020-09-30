@@ -10,61 +10,50 @@
 }
 
 .slidecontainer {
-    text-align: center;
-    /* width: 90%; Width of the outside container */
-  }
-  
-  /* The slider itself */
+  text-align: center;
+}
+
   .slider {
-    -webkit-appearance: none;  /* Override default CSS styles */
+    -webkit-appearance: none; 
     appearance: none;
-    width: 100%; /* Full-width */
-    height: 10px; /* Specified height */
-    background: #d3d3d3; /* Grey background */
-    outline: none; /* Remove outline */
-    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    width: 100%; 
+    height: 10px; 
+    background: #d3d3d3; 
+    outline: none;
+    opacity: 0.7; 
+    -webkit-transition: .2s;
     transition: opacity .2s;
   }
   
-  /* Mouse-over effects */
-  .slider:hover {
-    opacity: 1; /* Fully shown on mouse-over */
-  }
   
-  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider:hover {
+    opacity: 1;
+  }
+
   .slider::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
+    -webkit-appearance: none; 
     appearance: none;
-    width: 10px; /* Set a specific slider handle width */
-    height: 10px; /* Slider handle height */
-    background: #000; /* Green background */
-    cursor: pointer; /* Cursor on hover */
+    width: 10px; 
+    height: 10px; 
+    background: rgba(40, 167, 69, 0.9); 
+    cursor: pointer; 
   }
   
   .slider::-moz-range-thumb {
-    width: 10px; /* Set a specific slider handle width */
-    height: 10px; /* Slider handle height */
-    background: #000; /* Green background */
-    cursor: pointer; /* Cursor on hover */
+    width: 10px;
+    height: 10px;
+    background: rgba(40, 167, 69, 0.9);
+    cursor: pointer;
   }
 
-  /* #generateArray {
-    font-size: 16px;
-    font-family: monospace;
-    display: inline-block;
-    margin-left: 25px;
-    margin-right: 15px;
-} */
-
-
-#generateArray{ 
-    color: black;
+#generateArray{
     cursor: pointer;
     font-family: Raleway, sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
+    border-radius: 10px;
     padding: 0.5rem;
+    box-shadow: 0 10px 35px rgba(0,0,0,.2);
 }
 
 #generateArray:hover {

@@ -5,12 +5,10 @@ import SortingVisualizer from './components/SortingVisualizer';
 import Topbar from './components/Topbar';
 import BottomBar from './components/BottomBar'
 
-function App() {
-
-	let isDark = true;
+function App({ theme }) {
 
 	return (
-		<div className={isDark ? "dark" : "light"}>
+		<div className={theme ? "dark" : "light"}>
 			<Topbar />
 			<SortingVisualizer />
 			<BottomBar />
@@ -18,8 +16,8 @@ function App() {
 	);
 }
 
-const mapStateToProps = ({ }) => ({
-
+const mapStateToProps = ({ theme }) => ({
+	theme
 })
 
 const mapDispatchToProps = () => dispatch => ({

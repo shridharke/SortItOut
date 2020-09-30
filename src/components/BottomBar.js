@@ -31,7 +31,7 @@ export const BottomBar = ({ array, isRunning, generateArray, updateSpeed }) => {
             </div>
             <div class="slidecontainer">
                 Change Array Size
-                <input type="range" disabled={isRunning ? "disabled" : null} onChange={handleSizeChange} min="1" max="100" class="slider" id="sizeRange" />
+                <input type="range" onChange={handleSizeChange} disabled={isRunning ? "disabled" : null} min="1" max="100" class="slider" id="sizeRange" />
             </div>
             <div class="slidecontainer">
                 Change Speed

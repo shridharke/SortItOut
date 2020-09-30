@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { setArray } from '../reducers/array/reducer'
 import { setAlgorithm } from '../reducers/algorithm/reducer'
@@ -8,9 +8,12 @@ import bubbleSort from '../algorithms/bubbleSort'
 import mergeSort from '../algorithms/mergeSort'
 import quickSort from '../algorithms/quickSort'
 import heapSort from '../algorithms/heapSort'
+import selectionSort from '../algorithms/selectionSort'
 import './Topbar.css'
 
 export const Topbar = ({ array, algorithm, sort, isRunning, generateArray, updateAlgorithm, speed }) => {
+
+    const [sortText, setSortText] = useState("trSo ti utO!");
 
     function handleClick(algorithm) {
         updateAlgorithm(algorithm);
@@ -43,7 +46,7 @@ export const Topbar = ({ array, algorithm, sort, isRunning, generateArray, updat
                     Heap Sort
                 </div>
             </div>
-            <div className="sort-button" style={{ color: "black", cursor: cursor }} onClick={algorithm ? !isRunning ? () => sort(algorithm, array, speed) : null : null}>Sort it Out!</div>
+            <div className="sort-button" style={{ color: "black", cursor: cursor, transition: "1s" }} onMouseOver={() => { setSortText("Sort it Out!") }} onMouseOut={() => setSortText("trSo ti utO!")} onClick={algorithm ? !isRunning ? () => sort(algorithm, array, speed) : null : null}>{sortText}</div>
             <div className="right-menu">
                 <div
                     className={algorithm === "bubbleSort" ? "currentAlgorithmButton" : "algorithmButton"}
@@ -88,7 +91,8 @@ const mapDispatchToProps = () => dispatch => ({
             bubbleSort : algorithm === "mergeSort" ?
                 mergeSort : algorithm === "quickSort" ?
                     quickSort : algorithm === "heapSort" ?
-                        heapSort : null;
+                        heapSort : algorithm === "selectionSort" ?
+                            selectionSort : null;
         dispatch(setCurrentSorted([]));
         dispatch(setRunning(true));
         doSort(array, dispatch, speed);

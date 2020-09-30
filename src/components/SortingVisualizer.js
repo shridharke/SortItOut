@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-export const SortingVisualizer = ({ array, algorithm, currentBubbleTwo, currentMergeX, currentQuickTwo, pivot, currentHeapThree, currentSorted, currentSwappers, isRunning, speed }) => {
+export const SortingVisualizer = ({ array, algorithm, currentBubbleTwo, currentMergeX, currentQuickTwo, pivot, currentHeapThree, currentSelectionTwo, spivot, currentSorted, currentSwappers, isRunning, speed }) => {
 
     const numWidth = Math.floor(window.innerWidth / (array.length * 1.5));
     const width = `${numWidth}px`;
@@ -15,10 +15,10 @@ export const SortingVisualizer = ({ array, algorithm, currentBubbleTwo, currentM
         <div id="bodyContainer" style={{ width: "100%", height: "80vh", backgroundColor: "transparent", textAlign: "center", display: "flex", justifyContent: "center", alignItems: "flex-end" }}>
             { array.length ? array.map((number, index) => {
                 const backgroundColor = currentSwappers.includes(index) ?
-                    "rgba(255, 7, 58, 0.6)" : currentBubbleTwo.includes(index) || currentMergeX.includes(index) || currentQuickTwo.includes(index) || currentHeapThree.includes(index) ?
-                        "rgba(0, 123, 255, 0.6)" : pivot === index ?
+                    "rgba(255, 7, 58, 0.8)" : currentBubbleTwo.includes(index) || currentMergeX.includes(index) || currentQuickTwo.includes(index) || currentHeapThree.includes(index) || currentSelectionTwo.includes(index) ?
+                        "rgba(0, 123, 255, 0.8)" : pivot === index || spivot.includes(index) ?
                             "rgba(237, 234, 59, 0.8)" : currentSorted.includes(index) ?
-                                "rgba(40, 167, 69, 0.6)" : "rgba(108, 117, 125, 0.6)";
+                                "rgba(40, 167, 69, 0.8)" : "rgba(108, 117, 125, 0.8)";
                 return <div
                     className="arrayElement"
                     key={index}
@@ -31,8 +31,8 @@ export const SortingVisualizer = ({ array, algorithm, currentBubbleTwo, currentM
     )
 }
 
-const mapStateToProps = ({ array, algorithm, currentBubbleTwo, currentMergeX, currentQuickTwo, pivot, currentHeapThree, currentSorted, currentSwappers, isRunning, speed }) => ({
-    array, algorithm, currentBubbleTwo, currentMergeX, currentQuickTwo, pivot, currentHeapThree, currentSorted, currentSwappers, isRunning, speed
+const mapStateToProps = ({ array, algorithm, currentBubbleTwo, currentMergeX, currentQuickTwo, pivot, currentHeapThree, currentSelectionTwo, spivot, currentSorted, currentSwappers, isRunning, speed }) => ({
+    array, algorithm, currentBubbleTwo, currentMergeX, currentQuickTwo, pivot, currentHeapThree, currentSelectionTwo, spivot, currentSorted, currentSwappers, isRunning, speed
 })
 
 const mapDispatchToProps = () => dispatch => {
