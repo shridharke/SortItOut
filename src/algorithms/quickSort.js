@@ -78,11 +78,11 @@ function quickSortHelper(array, start, end, animations) {
 function handleDispatch(animations, dispatch, array, speed) {
     if (!animations.length) {
         dispatch(setPivot(null));
-        dispatch(setCurrentQuickTwo(array.map((num, index) => index)));
+        // dispatch(setCurrentQuickTwo(array.map((num, index) => index)));
         setTimeout(() => {
             dispatch(setCurrentQuickTwo([]));
             dispatch(setRunning(false));
-        }, 900);
+        }, currentValue);
         return;
     }
     let dispatchFunction = !(animations[0] instanceof Array) ?

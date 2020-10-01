@@ -76,12 +76,12 @@ function actualSort(first, second, animations, obj, start, end, isFinalMerge) {
 
 function handleDispatch(animations, dispatch, array, speed) {
     if (!animations.length) {
-        dispatch(setCurrentMergeX(array.map((num, index) => index)));
+        // dispatch(setCurrentMergeX(array.map((num, index) => index)));
         setTimeout(() => {
             dispatch(setCurrentMergeX([]));
             dispatch(setCurrentSorted(array.map((num, index) => index)));
             dispatch(setRunning(false));
-        }, 900);
+        }, currentValue);
         return;
     }
     let dispatchFunction = animations[0].length > 3 ?

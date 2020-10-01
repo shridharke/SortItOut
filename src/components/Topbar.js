@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { setArray } from '../reducers/array/reducer'
 import { setAlgorithm } from '../reducers/algorithm/reducer'
@@ -9,6 +9,7 @@ import mergeSort from '../algorithms/mergeSort'
 import quickSort from '../algorithms/quickSort'
 import heapSort from '../algorithms/heapSort'
 import selectionSort from '../algorithms/selectionSort'
+import insertionSort from '../algorithms/insertionSort'
 import './Topbar.css'
 
 export const Topbar = ({ array, algorithm, sort, isRunning, generateArray, updateAlgorithm, speed }) => {
@@ -92,7 +93,8 @@ const mapDispatchToProps = () => dispatch => ({
                 mergeSort : algorithm === "quickSort" ?
                     quickSort : algorithm === "heapSort" ?
                         heapSort : algorithm === "selectionSort" ?
-                            selectionSort : null;
+                            selectionSort : algorithm === "insertionSort" ?
+                                insertionSort : null;
         dispatch(setCurrentSorted([]));
         dispatch(setRunning(true));
         doSort(array, dispatch, speed);
